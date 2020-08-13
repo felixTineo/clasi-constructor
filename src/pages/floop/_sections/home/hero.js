@@ -10,7 +10,7 @@ const HeroCont = styled.div`
   position: relative;
   height: calc(100vh - 67px);
   overflow: hidden;
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   @media(min-width: 768px){
     height: calc(100vh - 89px);
   }  
@@ -46,7 +46,7 @@ const HeroTitle = styled.h1`
   font-weight: lighter;
   font-family: "open sans";
   text-align: center;
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   @media(min-width: 768px){
     max-width: 50%;
     font-size: 2.5rem;
@@ -66,7 +66,7 @@ const SearchForm = styled.form`
 `
 
 export default ()=> {
-  const hero = useContext(OfficeContext).web.home.hero;
+  const hero = useContext(OfficeContext).home.hero;
   const size = useWindowSize();
 
   return(

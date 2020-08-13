@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useStore, useDispatch } from '_hooks';
 import {
   Modal
 } from 'antd';
 import { ChromePicker } from 'react-color';
 
 export default ()=> {
-
+  const visible = useStore().color;
+  const { onColor, handleColor: dispatchColor } = useDispatch();
+  const [color, setColor] = useState("#DC314F");
+  const handleColor = () =>{
+    console.log(color);
+    dispatchColor(color);
+    Modal.destroyAll();
+    onColor();
+  }
   return(
     <Modal
-    visible={modal}
-    title="Elige un color"
-    onOk={()=> { setModal(false); Modal.destroyAll() }}
-    onCancel={()=> setModal(false)}
-    destroyOnClose
-  >
-    <ChromePicker color={color} onChange={onColor} />
-  </Modal>          
+      visible={visible}
+      title="Elige un color"
+      onOk={handleColor}
+      onCancel={onColor}
+      destroyOnClose
+      bodyStyle={{ justifyContent: "center", display: "flex", alignItems: "center" }}
+    >
+      <ChromePicker color={color} onChange={color => setColor(color.hex)} />
+    </Modal>          
   )
 }

@@ -31,7 +31,7 @@ export default ({ children })=> {
 
   return(
     <OfficeContext.Provider value={dataContext}>
-      <ThemeProvider theme={dataContext.web}>
+      <ThemeProvider theme={dataContext}>
         <Layout>
           <Header />
           <Body>

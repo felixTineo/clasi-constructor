@@ -3,6 +3,7 @@ import {
   primaryColor,
   onEdit as editCreator,
   unEdit as closeEditCreator,
+  onColor as colorCreator,
   logo,
 } from '_context/constructor/actions';
 import { DispatchContext } from '_context/constructor/context';
@@ -19,5 +20,6 @@ export default () => {
     onEdit,
     unEdit: ()=> dispatch(closeEditCreator()),
     handleLogo: ()=> dispatch(logo()),
+    onColor: ()=> dispatch(colorCreator()),
   }
 }

@@ -4,7 +4,7 @@ import initialState from './state';
 import { StateContext, DispatchContext } from './context';
 
 export default ({ children })=> {
-  const [state, dispatch] = useReducer(reducer, initialState.auth)
+  const [state, dispatch] = useReducer(reducer, initialState)
   return(
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>

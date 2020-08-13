@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import {
   Layout,
   Modal,
+  Tooltip,
   Button,
   Menu,
   Row,
   Col,
 } from 'antd';
+import { BgColorsOutlined } from '@ant-design/icons';
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
 import { useDispatch } from '_hooks';
 import { edit } from '_context/constructor/actions';
 import EditFrom from '_components/edit-form';
+import ColorForm from '_components/edit-color';
 
 const elemetsId = Object.values(edit);
 
@@ -25,14 +28,7 @@ const { Content, Header, Footer } = Layout;
 
 export default ({ children })=> {
 
-  const [modal, setModal] = useState(false);
-  const [color, setColor] = useState("#DC314F");
-  const { handleColor, onEdit } = useDispatch();
-
-  const onColor = value => {
-    handleColor(value.hex);
-    setColor(value.hex);
-  }
+  const {  onEdit, onColor } = useDispatch();
 
   useEffect(()=> {
     const elements = document.getElementsByClassName("edit-cont");
@@ -50,26 +46,30 @@ export default ({ children })=> {
 
   return(
     <Layout>
-      {console.log(color)}
       <Header style={{ minHeight: 66, color: "#fff", backgroundColor: "#fff", position: "fixed", width: "100%" , zIndex: 2000}}>
         <Row>
-          <Col>
+          <Col xs={6}>
             <img src={require("assets/images/logo.png")} width="180px" />
           </Col>
-          <Col>
+          <Col xs={16}>
             <Menu mode="horizontal">
               <Menu.Item key="1">Estilos</Menu.Item>
               <Menu.Item key="2">Color</Menu.Item>
               <Menu.Item key="3">Plantillas</Menu.Item>
             </Menu>                  
           </Col>
+          <Col xs={2}>
+            <Tooltip title="Editar color principal" placement="bottom">
+              <Button onClick={onColor} type="primary" shape="circle" icon={<BgColorsOutlined />} />
+            </Tooltip>
+          </Col>
         </Row>
       </Header>
       <Content>
         {children}
       </Content>
-
       <EditFrom />
+      <ColorForm />
     </Layout>
   )
 }

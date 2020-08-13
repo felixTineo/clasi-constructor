@@ -13,7 +13,7 @@ const Header = styled.header`
   width: 100%;
   background-color: #fff;
   position: fixed;
-  top: 64px;
+  top: 66px;
   z-index: 500;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .12),
               0 4px 4px rgba(0, 0, 0, .12),
@@ -21,7 +21,7 @@ const Header = styled.header`
               0 8px 8px rgba(0, 0, 0, .12);
 `
 const RateCont = styled.div`
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.main.primaryColor};
   width: 100%;
   display: none;
   @media(min-width: 768px){
@@ -41,7 +41,7 @@ const RateBar = styled.ul`
   align-items: center;
 `
 const RateItem = styled.li`
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   margin-left: .5rem;
   font-weight: bold;
   user-select: none;
@@ -56,12 +56,12 @@ const NavCont = styled.nav`
   align-items: center;
 `
 const HeaderTitle = styled.h1`
-  color: ${props => props.theme.primaryColor};
+  color: ${props => props.theme.main.primaryColor};
   font-size: 2rem;
   font-weight: bold;
 `
 const ResponsiveNav = styled.nav`
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.main.primaryColor};
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
@@ -85,21 +85,21 @@ const ResponsiveNavUl = styled.ul`
 `
 
 const NavOption = styled.button`
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   background-color: transparent;
   border: none;
   transition: 250ms ease;
   font-size: 2rem;
   margin-bottom: 1rem;
   &:active{
-    color: ${props => hexToHsl(props.theme.secondaryColor, 50)}
+    //color: ${props => hexToHsl(props.theme.main.secondaryColor, 50)}
   }
 `
 const SocialNav = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   display: flex;
 `
 
@@ -107,7 +107,7 @@ const SocialItem = styled.li`
   margin-left: .5rem;
 `
 const PhoneIcon = styled.svg`
-  fill: ${props => props.theme.primaryColor};
+  fill: ${props => props.theme.main.primaryColor};
   //width: 10rem;
 `
 //DESKTOP NAV
@@ -128,7 +128,7 @@ const NavLink = styled.a`
   transition: 250ms ease;
   text-decoration: none;
   &:hover{
-    color: ${props => props.theme.primaryColor} !important;
+    color: ${props => props.theme.main.primaryColor} !important;
   }
   &:visited{
     color: #212121;
@@ -167,9 +167,9 @@ export default ({ props })=> {
             <span className="edit-cont" style={{ position: 'relative' }}>
               <a href="/">
                 {
-                  state.web.logo
-                    ?<img src={state.web.logo} alt={state.web.title} />
-                    :<HeaderTitle>{state.web.title}</HeaderTitle>
+                  state.main.logo
+                    ?<img src={state.main.logo} alt={state.web.title} />
+                    :<HeaderTitle>{state.main.title}</HeaderTitle>
                 }
               </a>
             </span>

@@ -32,7 +32,7 @@ const Button = styled.button`
 `
 
 export default ({ onClick, visible })=> {
-  const theme = useContext(OfficeContext).web;
+  const theme = useContext(OfficeContext).main;
   useEffect(()=> {
     if(visible){
       gsap.to('#responsive-bar-top', .25, { y: 7, rotate: 45, backgroundColor: "#fff" });
