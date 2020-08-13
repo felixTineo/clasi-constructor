@@ -8,11 +8,11 @@ import { useWindowSize } from '../../_hooks';
 
 const HeroCont = styled.div`
   position: relative;
-  height: calc(100vh - 67px);
+  height: calc(100vh - 56px);
   overflow: hidden;
   color: ${props => props.theme.main.secondaryColor};
   @media(min-width: 768px){
-    height: calc(100vh - 89px);
+    height: calc(100vh - 66px);
   }  
 `
 const HeroImg = styled.div`
@@ -20,6 +20,9 @@ const HeroImg = styled.div`
   top: 0;
   left: 0;
   background-image: url(${props => props.theme.home.hero.background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   width: 100%;
   height: 100%;
   &::after{

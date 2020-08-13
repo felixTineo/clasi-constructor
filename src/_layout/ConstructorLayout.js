@@ -11,7 +11,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons';
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
-import { useDispatch } from '_hooks';
+import { useDispatch, useStore } from '_hooks';
 import { edit } from '_context/constructor/actions';
 import EditFrom from '_components/edit-form';
 import ColorForm from '_components/edit-color';
@@ -29,6 +29,7 @@ const { Content, Header, Footer } = Layout;
 export default ({ children })=> {
 
   const {  onEdit, onColor } = useDispatch();
+  const state = useStore();
 
   useEffect(()=> {
     const elements = document.getElementsByClassName("edit-cont");
@@ -42,7 +43,7 @@ export default ({ children })=> {
       console.log(el, i)
       el.appendChild(button);
     }
-  },[])
+  },[state]);
 
   return(
     <Layout>
@@ -52,9 +53,8 @@ export default ({ children })=> {
             <img src={require("assets/images/logo.png")} width="180px" />
           </Col>
           <Col xs={16}>
-            <Menu mode="horizontal">
+            <Menu mode="horizontal" defaultSelectedKeys={['1']}>
               <Menu.Item key="1">Estilos</Menu.Item>
-              <Menu.Item key="2">Color</Menu.Item>
               <Menu.Item key="3">Plantillas</Menu.Item>
             </Menu>                  
           </Col>
@@ -65,7 +65,7 @@ export default ({ children })=> {
           </Col>
         </Row>
       </Header>
-      <Content>
+      <Content style={{ paddingTop: 66 }}>
         {children}
       </Content>
       <EditFrom />

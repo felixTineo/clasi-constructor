@@ -13,10 +13,10 @@ const Layout = styled.div`
 `
 
 const Body = styled.div`
-  padding-top: calc(67px + 95px);
+  //padding-top: calc(67px + 95px);
   min-height: 100vh;
   @media(min-width: 768px){
-    padding-top: calc(89px + 95px);
+    //padding-top: calc(89px + 95px);
   }
 `
 

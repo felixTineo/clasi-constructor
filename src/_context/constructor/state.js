@@ -2,9 +2,9 @@
 export default {
   edit:{
     visible: false,
-    input: "",
-    nextAction: "",
-    title: "",
+    input: "BOTH",
+    nextAction: "HERO",
+    title: "hero",
   },
   color: false,
   office: {
@@ -27,8 +27,10 @@ export default {
     primaryColor: "#f00046",
     secondaryColor: "#ffffff",
     favicon: "",
-    logo: ""/*require("assets/images/templates/floop/logo.png")*/,
-    title:"The Floop",
+    logo:{
+      isImage: false,
+      value: "The Floop" /*require("assets/images/templates/floop/logo.png")*/,
+    },
   },
   home:{
     hero:{

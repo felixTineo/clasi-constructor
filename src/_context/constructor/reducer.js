@@ -1,10 +1,10 @@
 import {
   PRIMARY_COLOR,
-  edit,
-  inputs,
   ON_EDIT,
   UN_EDIT,
   ON_COLOR,
+  ON_LOGO,
+  ON_HERO,
 } from './actions';
 
 export default (state, action) => {
@@ -30,9 +30,21 @@ export default (state, action) => {
       return Object.assign({}, state, {
         color: !state.color,
       });
-    case edit.LOGO:
+    case ON_LOGO:
       return Object.assign({}, state, {
-        edit: Object.assign({}, state.edit, { visible: true, type: inputs.TEXT }),
+        main: Object.assign({}, state.main, {
+          logo: action.payload,
+        })
       });
+    case ON_HERO:
+      return Object.assign({}, state, {
+        home: Object.assign({}, state.home, {
+          hero: Object.assign({}, state.home.hero, {
+            title: action.payload.title ? action.payload.title : state.home.hero.title,
+            background: action.payload.background ? action.payload.background : state.home.hero.background,
+            visible: action.payload.visible,
+          }),
+        })
+      })
   }
 }

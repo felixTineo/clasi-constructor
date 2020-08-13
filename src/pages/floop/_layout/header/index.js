@@ -13,12 +13,16 @@ const Header = styled.header`
   width: 100%;
   background-color: #fff;
   position: fixed;
+  //min-heightheight: 98px;
   top: 66px;
   z-index: 500;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .12),
               0 4px 4px rgba(0, 0, 0, .12),
               0 4px 4px rgba(0, 0, 0, .12),
               0 8px 8px rgba(0, 0, 0, .12);
+  @media(min-width: 768px){
+    //height: 122px;
+  }    
 `
 const RateCont = styled.div`
   background-color: ${props => props.theme.main.primaryColor};
@@ -27,6 +31,11 @@ const RateCont = styled.div`
   @media(min-width: 768px){
     display: block;
   }  
+`
+const Logo = styled.img`
+  object-fit: cover;
+  object-position: center;
+  max-width: 180px;
 `
 const RateContResponsive = styled(RateCont)`
   display: block;
@@ -57,7 +66,7 @@ const NavCont = styled.nav`
 `
 const HeaderTitle = styled.h1`
   color: ${props => props.theme.main.primaryColor};
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
 `
 const ResponsiveNav = styled.nav`
@@ -167,9 +176,9 @@ export default ({ props })=> {
             <span className="edit-cont" style={{ position: 'relative' }}>
               <a href="/">
                 {
-                  state.main.logo
-                    ?<img src={state.main.logo} alt={state.web.title} />
-                    :<HeaderTitle>{state.main.title}</HeaderTitle>
+                  state.main.logo.isImage
+                    ?<Logo src={state.main.logo.value} alt="logo" />
+                    :<HeaderTitle>{state.main.logo.value}</HeaderTitle>
                 }
               </a>
             </span>
