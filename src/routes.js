@@ -10,7 +10,7 @@ export default ()=> {
     <Switch>
       <Route path="/login" component={Login} />
       <Route path="/floop" component={Floop} />
-      <Route path="/" component={Home} />
+      <Route path="/" component={Floop} />
     </Switch>
   )
 }
