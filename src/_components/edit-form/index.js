@@ -1,52 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStore, useDispatch } from '_hooks';
-import styled from 'styled-components';
+import UploadInput from './upload';
+import TextCards from './text-cards';
 import {
   Modal,
   Tabs,
   Form,
   Input,
-  Upload,
   Checkbox,
 } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 
-const UploadButton = ({ type })=> (
-  <div>
-    {/*this.state.loading ? <LoadingOutlined /> : <PlusOutlined />*/}
-    <PlusOutlined />
-    <div className="ant-upload-text">{type}</div>
-  </div>
-);
-
-const UploadInput = ({ onChange, value }) => {
-  const state = useStore();
-  const handleChange = info => {
-    const image = URL.createObjectURL(info.file.originFileObj);
-    onChange(image);
-  }
-
-  return(
-    <Upload
-      name="logo"
-      listType="picture-card"
-      className="avatar-uploader"
-      showUploadList={false}
-      //beforeUpload={beforeUpload}
-      onChange={handleChange}
-    >
-      {
-        value ? <img src={value} alt="ingreso de imagenes" style={{ width: '100%' }} /> : <UploadButton type="jpg/png/svg" />
-      }
-    </Upload>    
-  )
-}
-
 export default ()=> {
   const state = useStore();
-  const { unEdit, onLogo, onHero } = useDispatch();
+  const {
+    unEdit,
+    onLogo,
+    onHero,
+    onAboutBanner
+  } = useDispatch();
+
   const [form] = Form.useForm();
 
   const onHandlers = (type) => {
@@ -55,6 +29,8 @@ export default ()=> {
         return handleLogo;
       case "HERO":
         return handleHero;
+      case "ABOUT_BANNER":
+        return handleAboutBanner;
     }
   }
   const handleLogo = values => {
@@ -69,8 +45,12 @@ export default ()=> {
     onHero(payload);
   }
 
+  const handleAboutBanner = values => {
+    onAboutBanner(values);
+  }
+
   const onFinish = values => {
-    const handler = onHandlers(state.edit.nextAction);
+    const handler = onHandlers(state.edit.type);
     handler(values);
     Modal.destroyAll();
     form.resetFields();
@@ -84,6 +64,7 @@ export default ()=> {
       onOk={()=> onFinish(form.getFieldValue())}
       onCancel={unEdit}
       destroyOnClose
+      width={720}
     >
       <Form
         name="edit-form"
@@ -95,21 +76,9 @@ export default ()=> {
           <Checkbox>Esta sección sera visible</Checkbox>
         </Form.Item>
         {
-          state.edit.input === "TEXT" && (
-            <Form.Item label="Ingrese un texto:" name="title">
-              <Input.TextArea rows={4} />
-            </Form.Item>
-          )
-        }
-        {
-          state.edit.input === "IMAGE" && (
-            <Form.Item name="image" label="Ingrese una imagen:">
-              <UploadInput />
-            </Form.Item>            
-          )
-        }
-        {
-          state.edit.input === "BOTH" && (
+          state.edit.type === "LOGO"
+          ||state.edit.type === "HERO"
+           ? (
             <Tabs defaultActiveKey="1">
               <TabPane key="1" tab="Titulo">
                 <Form.Item name="title">
@@ -121,8 +90,38 @@ export default ()=> {
                   <UploadInput />
                 </Form.Item>
               </TabPane>
-            </Tabs>            
+            </Tabs>       
+          ): null
+        }
+        {
+          state.edit.type === "ABOUT_BANNER"
+          ?(
+            <Tabs defaultActiveKey="1">
+              <TabPane key="1" tab="Titulo">
+                <Form.Item name="title" label="Titulo">
+                  <Input.TextArea rows={2} />
+                </Form.Item>
+                <Form.Item name="subTitle" label="Sub-titulo">
+                  <Input.TextArea rows={4} />
+                </Form.Item>
+                <Form.Item name="buttonText" label="Texto en el botón">
+                  <Input />
+                </Form.Item>
+              </TabPane>
+              <TabPane key="2" tab="Imagen" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Form.Item name="image">
+                  <UploadInput />
+                </Form.Item>
+              </TabPane>
+            </Tabs>                        
           )
+          :null
+        }
+        {
+          state.edit.type === "TEXT_CARDS"
+          ?(
+            <TextCards />
+          ):null
         }
       </Form>
     </Modal>

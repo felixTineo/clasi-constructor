@@ -6,6 +6,7 @@ import {
   onColor as colorCreator,
   onLogo,
   onHero,
+  onAboutBanner,
 } from '_context/constructor/actions';
 import { DispatchContext } from '_context/constructor/context';
 
@@ -13,7 +14,8 @@ export default () => {
   const dispatch = useContext(DispatchContext);
   const onEdit = (id) => {
     const split = id.split(":");
-    const payload = { visible: true, input: split[0], nextAction: split[1], title: split[2] }
+    const payload = { type: split[0], title: split[1] }
+    console.log(payload);
     dispatch(editCreator(payload));
   }
   return {
@@ -21,7 +23,8 @@ export default () => {
     onEdit,
     unEdit: ()=> dispatch(closeEditCreator()),
     onColor: ()=> dispatch(colorCreator()),
-    onLogo: (payload)=> dispatch(onLogo(payload)),
+    onLogo: payload => dispatch(onLogo(payload)),
     onHero: payload => dispatch(onHero(payload)),
+    onAboutBanner: payload => dispatch(onAboutBanner(payload))
   }
 }

@@ -5,6 +5,7 @@ import {
   ON_COLOR,
   ON_LOGO,
   ON_HERO,
+  ON_ABOUT_BANNER,
 } from './actions';
 
 export default (state, action) => {
@@ -17,8 +18,7 @@ export default (state, action) => {
       return Object.assign({}, state, {
         edit: Object.assign({}, state.edit, {
           visible: true,
-          input: action.payload.input,
-          nextAction: action.payload.nextAction,
+          type: action.payload.type,
           title: action.payload.title,
         })
       })
@@ -40,10 +40,25 @@ export default (state, action) => {
       return Object.assign({}, state, {
         home: Object.assign({}, state.home, {
           hero: Object.assign({}, state.home.hero, {
+            visible: action.payload.visible ? action.payload.visible : state.home.hero.visible,
             title: action.payload.title ? action.payload.title : state.home.hero.title,
             background: action.payload.background ? action.payload.background : state.home.hero.background,
             visible: action.payload.visible,
           }),
+        })
+      })
+    case ON_ABOUT_BANNER:
+      return Object.assign({}, state, {
+        home: Object.assign({}, state.home, {
+          about: Object.assign({}, state.home.about, {
+            banner: Object.assign({}, state.home.about.banner, {
+              visible: action.payload.visible ? action.payload.visible : state.home.about.banner.visible ,
+              title: action.payload.title ? action.payload.title : state.home.about.banner.title,
+              subTitle: action.payload.subTitle ? action.payload.subTitle : state.home.about.banner.subTitle,
+              image: action.payload.image ? action.payload.image : state.home.about.banner.image,
+              buttonText: action.payload.buttonText ? action.payload.buttonText : state.home.about.banner.buttonText,
+            })
+          })
         })
       })
   }

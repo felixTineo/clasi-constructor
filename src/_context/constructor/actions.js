@@ -4,10 +4,12 @@ export const UN_EDIT = "UN_EDIT";
 export const ON_COLOR = "HANDLE_COLOR";
 export const ON_LOGO = "ON_LOGO";
 export const ON_HERO = "ON_HERO";
+export const ON_ABOUT_BANNER = "ON_ABOUT_BANNER";
 
 export const edit = {
-  LOGO: "BOTH:LOGO:logo",
-  HERO_TITLE: "BOTH:HERO:hero",
+  LOGO: "LOGO:logo",
+  HERO_TITLE: "HERO:hero",
+  ABOUT_BANNER: "ABOUT_BANNER:banner"
 }
 
 export const inputs = {
@@ -23,3 +25,4 @@ export const onColor = () => ({ type: ON_COLOR });
 
 export const onLogo = (payload) => ({ type: ON_LOGO, payload });
 export const onHero = (payload) => ({ type: ON_HERO, payload });
+export const onAboutBanner = (payload) => ({ type: ON_ABOUT_BANNER, payload });

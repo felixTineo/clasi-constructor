@@ -1,10 +1,9 @@
 
 export default {
   edit:{
-    visible: false,
-    input: "BOTH",
-    nextAction: "HERO",
-    title: "hero",
+    visible: true,
+    type: "TEXT_CARDS",
+    title: "Servicios",
   },
   color: false,
   office: {
@@ -37,6 +36,41 @@ export default {
       visible: true,
       title: "Somos lo mejor en el mercado inmobiliario",
       background: require("assets/images/templates/floop/hero.jpg"),
+    },
+    about:{
+      banner:{
+        visible: true,
+        image: require('assets/images/templates/floop/service.jpg'),
+        title: "Somos una empresa con mas de 20 años en el rubro del corretaje inmobiliario",
+        subTitle: "Esto nos permite entender mejor que nadie las necesidades de nuestros clientes, por eso ponemos el foco en que la experienca de compra o arriendo sea única",
+        buttonText: "Conocénos",
+      },
+      services:[
+        {
+          title: 'Compras',
+          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+        },
+        {
+          title: 'Ventas',
+          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+        },
+        {
+          title: 'Arriendo',
+          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+        },                
+        {
+          title: 'Compras',
+          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+        },
+        {
+          title: 'Ventas',
+          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+        },
+        {
+          title: 'Arriendo',
+          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+        },                   
+      ],
     }
   }
 }

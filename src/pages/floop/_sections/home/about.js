@@ -71,7 +71,7 @@ const ButtonCont = styled.div`
 
 const ServiceImage = styled.div`
   position: relative;
-  background-image: url(${props => props.theme.serviceUrl});
+  background-image: url(${props => props.theme.home.about.banner.image});
   background-position: center;
   background-size: cover;
   background-repeat: none;
@@ -99,7 +99,7 @@ const SubTitleCont = styled.div`
   margin-bottom: 2rem;
 `
 const SubTitle = styled.h2`
-  color: ${props => props.theme.primaryColor};
+  color: ${props => props.theme.main.primaryColor};
   text-align: center;
   width: 50%;
 `
@@ -109,8 +109,8 @@ const Strong = styled.strong`
 `
 
 export default ()=> {
-  const services = useContext(OfficeContext).webOffice.home.service;
-  const info = useContext(OfficeContext).webOffice.home.about;
+  const services = useContext(OfficeContext).home.about.services;
+  const info = useContext(OfficeContext).home.about.banner;
   return(
     <MainSection>
       <Container>
@@ -118,10 +118,10 @@ export default ()=> {
         <ServiceInfo>
           <ServiceImage />
           <InfoCont>
-            <Info>{info.title}</Info>
-            <SubInfo>{info.p}</SubInfo>
+            <Info className="edit-cont">{info.title}</Info>
+            <SubInfo>{info.subTitle}</SubInfo>
             <ButtonCont>
-              <Button block outlined>Conocénos</Button>
+              <Button block outlined>{info.buttonText}</Button>
             </ButtonCont>
           </InfoCont>
         </ServiceInfo>

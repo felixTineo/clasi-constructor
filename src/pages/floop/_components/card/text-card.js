@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  background-color: ${props => props.theme.primaryColor};
-  color: ${props => props.theme.secondaryColor};
+  background-color: ${props => props.theme.main.primaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   height: 257px;
   width: 100%;
   display: flex;
