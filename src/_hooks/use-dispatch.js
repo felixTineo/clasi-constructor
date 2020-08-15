@@ -7,6 +7,7 @@ import {
   onLogo,
   onHero,
   onAboutBanner,
+  onServices,
 } from '_context/constructor/actions';
 import { DispatchContext } from '_context/constructor/context';
 
@@ -25,6 +26,7 @@ export default () => {
     onColor: ()=> dispatch(colorCreator()),
     onLogo: payload => dispatch(onLogo(payload)),
     onHero: payload => dispatch(onHero(payload)),
-    onAboutBanner: payload => dispatch(onAboutBanner(payload))
+    onAboutBanner: payload => dispatch(onAboutBanner(payload)),
+    onServices: payload => dispatch(onServices(payload)),
   }
 }

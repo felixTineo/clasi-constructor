@@ -6,6 +6,7 @@ import {
   ON_LOGO,
   ON_HERO,
   ON_ABOUT_BANNER,
+  ON_SERVICES,
 } from './actions';
 
 export default (state, action) => {
@@ -58,6 +59,15 @@ export default (state, action) => {
               image: action.payload.image ? action.payload.image : state.home.about.banner.image,
               buttonText: action.payload.buttonText ? action.payload.buttonText : state.home.about.banner.buttonText,
             })
+          })
+        })
+      })
+    case ON_SERVICES:
+      return Object.assign({}, state, {
+        home: Object.assign({}, state.home, {
+          services: Object.assign({}, state.home.services, {
+            visible: action.payload.visible ? action.payload.visible : state.home.services.visible,
+            items: action.payload.items.length ? action.payload.items : state.home.services.items,
           })
         })
       })

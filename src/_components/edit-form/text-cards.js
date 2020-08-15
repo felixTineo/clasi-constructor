@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CloseOutlined } from '@ant-design/icons';
 import {
@@ -26,25 +26,42 @@ const Card = styled.div`
 `
 const CloseCont = styled.div`
   position: absolute;
-  right: 0;
-  top: 0;
+  right: .25rem;
+  top: .25rem;
   z-index: 100;
 `
 
-export default ()=>{
+export default ({ items, form })=>{
+  const [cards, setCards] = useState(items);
+  
+  const onDelete = id => {
+    console.log(id)
+    console.log(cards);
+    const newCards = cards.filter(card => card.id !== id);
+    console.log(newCards);
+    form.setFieldsValue({});
+    setCards(newCards);
+  }
+
   return(
     <Row gutter={[16, 16]}>
+      {console.log(cards)}
       {
-        Array(6).fill(0).map((service, index) => (
-          <Col key={index} xs={8}>
+        cards.map((service, index) => (
+          <Col key={service.id} xs={8}>
             <Card>
               <CloseCont>
-                <Button style={{ maxHeight: 25, maxWidth: 25, minWidth:  fontSize: 14 }} icon={<CloseOutlined />} shape="circle" />
+                <Button
+                  style={{ maxHeight: 25, maxWidth: 25, minWidth: 25, fontSize: 14 }}
+                  icon={<CloseOutlined />}
+                  shape="circle"
+                  onClick={()=> onDelete(service.id)}
+                />
               </CloseCont>
-              <Form.Item label="Titulo:" name={`service-title-${index + 1}`}>
+              <Form.Item initialValue={service.title} label="Titulo:" name={`service-title-${index + 1}`} preserve={false}>
                 <Input />
               </Form.Item>
-              <Form.Item label="Descripción:" name={`service-description-${index + 1}`}>
+              <Form.Item initialValue={service.description} label="Descripción:" name={`service-description-${index + 1}`} preserve={false}>
                 <Input.TextArea rows={4} />
               </Form.Item>            
             </Card>

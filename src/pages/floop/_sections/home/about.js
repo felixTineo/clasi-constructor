@@ -109,7 +109,7 @@ const Strong = styled.strong`
 `
 
 export default ()=> {
-  const services = useContext(OfficeContext).home.about.services;
+  const services = useContext(OfficeContext).home.services.items;
   const info = useContext(OfficeContext).home.about.banner;
   return(
     <MainSection>

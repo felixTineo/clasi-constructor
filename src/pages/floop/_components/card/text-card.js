@@ -23,12 +23,12 @@ const CardInfo = styled.p`
   text-align: center;
   width: 257px;
 `
-export default ({ title, p })=> {
+export default ({ title, description })=> {
 
   return(
     <Card>
       <CardTitle>{title}</CardTitle>
-      <CardInfo>{p}</CardInfo>
+      <CardInfo>{description}</CardInfo>
     </Card>
   )
 }

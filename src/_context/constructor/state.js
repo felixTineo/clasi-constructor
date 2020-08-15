@@ -1,9 +1,9 @@
-
+import { v1 as uuid } from 'uuid';
 export default {
   edit:{
-    visible: true,
-    type: "TEXT_CARDS",
-    title: "Servicios",
+    visible: false,
+    type: "",
+    title: "",
   },
   color: false,
   office: {
@@ -45,32 +45,41 @@ export default {
         subTitle: "Esto nos permite entender mejor que nadie las necesidades de nuestros clientes, por eso ponemos el foco en que la experienca de compra o arriendo sea única",
         buttonText: "Conocénos",
       },
-      services:[
+    },
+    services:{
+      visible: true,
+      items:[
         {
+          id: uuid(),
           title: 'Compras',
-          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
         },
         {
+          id: uuid(),
           title: 'Ventas',
-          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
         },
         {
+          id: uuid(),
           title: 'Arriendo',
-          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
         },                
         {
+          id: uuid(),
           title: 'Compras',
-          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
         },
         {
+          id: uuid(),
           title: 'Ventas',
-          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
         },
         {
+          id: uuid(),
           title: 'Arriendo',
-          p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium fringilla ex at hendrerit',
         },                   
-      ],
+      ]      
     }
   }
 }

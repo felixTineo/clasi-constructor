@@ -2,6 +2,7 @@ import React from 'react';
 import { useStore, useDispatch } from '_hooks';
 import UploadInput from './upload';
 import TextCards from './text-cards';
+import { v1 as uuid } from 'uuid';
 import {
   Modal,
   Tabs,
@@ -18,7 +19,8 @@ export default ()=> {
     unEdit,
     onLogo,
     onHero,
-    onAboutBanner
+    onAboutBanner,
+    onServices,
   } = useDispatch();
 
   const [form] = Form.useForm();
@@ -31,6 +33,8 @@ export default ()=> {
         return handleHero;
       case "ABOUT_BANNER":
         return handleAboutBanner;
+      case "ABOUT_SERVICES":
+        return handleAboutServices;
     }
   }
   const handleLogo = values => {
@@ -47,6 +51,24 @@ export default ()=> {
 
   const handleAboutBanner = values => {
     onAboutBanner(values);
+  }
+
+  const handleAboutServices = values => {
+    let services = [];
+    let index = 1;
+    for(let key in values){
+      const serviceKey = key.match(/service-title/) && key;
+      if(serviceKey){
+        const id = uuid();
+        const title = values[`service-title-${index}`];
+        const description = values[`service-description-${index}`];
+        const service = {id, title, description};
+        services.push(service);
+        index++;
+      }
+    }
+    const payload = { visible: values.visible, items: services };
+    onServices(payload);
   }
 
   const onFinish = values => {
@@ -73,7 +95,7 @@ export default ()=> {
         initialValues={{ visible: true }}
       >
         <Form.Item name="visible" valuePropName="checked">
-          <Checkbox>Esta sección sera visible</Checkbox>
+          <Checkbox initialValue={true}>Esta sección sera visible</Checkbox>
         </Form.Item>
         {
           state.edit.type === "LOGO"
@@ -118,9 +140,9 @@ export default ()=> {
           :null
         }
         {
-          state.edit.type === "TEXT_CARDS"
+          state.edit.type === "ABOUT_SERVICES"
           ?(
-            <TextCards />
+            <TextCards form={form} items={state.home.services.items} />
           ):null
         }
       </Form>

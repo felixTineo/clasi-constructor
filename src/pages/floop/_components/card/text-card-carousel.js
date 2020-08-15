@@ -81,7 +81,7 @@ const settings = {
 export default ({ items })=> {
     
   return (
-    <div>
+    <div className="edit-cont">
       <Slider {...settings}>
         {
           items.map((item, index) => (
