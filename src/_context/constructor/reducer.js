@@ -7,6 +7,7 @@ import {
   ON_HERO,
   ON_ABOUT_BANNER,
   ON_SERVICES,
+  ON_PROPERTIES,
 } from './actions';
 
 export default (state, action) => {
@@ -68,6 +69,17 @@ export default (state, action) => {
           services: Object.assign({}, state.home.services, {
             visible: action.payload.visible ? action.payload.visible : state.home.services.visible,
             items: action.payload.items.length ? action.payload.items : state.home.services.items,
+          })
+        })
+      });
+    case ON_PROPERTIES:
+      return Object.assign({}, state, {
+        home: Object.assign({}, state.home, {
+          properties: Object.assign({}, state.home.properties,{
+            visible: action.payload.visible ? action.payload.visible : state.home.properties.visible,
+            title: action.payload.title ? action.payload.title : state.home.properties.title,
+            footer: action.payload.footer ? action.payload.footer : state.home.properties.footer,
+            buttonText: action.payload.buttonText ? action.payload.buttonText : state.home.properties.buttonText,
           })
         })
       })

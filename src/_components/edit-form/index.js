@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useStore, useDispatch } from '_hooks';
 import UploadInput from './upload';
 import TextCards from './text-cards';
@@ -19,6 +19,7 @@ export default ()=> {
     unEdit,
     onLogo,
     onHero,
+    onProperties,
     onAboutBanner,
     onServices,
   } = useDispatch();
@@ -35,6 +36,8 @@ export default ()=> {
         return handleAboutBanner;
       case "ABOUT_SERVICES":
         return handleAboutServices;
+      case "PROPERTIES":
+        return handleProperties;
     }
   }
   const handleLogo = values => {
@@ -47,6 +50,10 @@ export default ()=> {
     const { title, visible, image } = values;
     const payload = { visible, title, background: image };
     onHero(payload);
+  }
+
+  const handleProperties = values => {
+    onProperties(values);
   }
 
   const handleAboutBanner = values => {
@@ -114,6 +121,23 @@ export default ()=> {
               </TabPane>
             </Tabs>       
           ): null
+        }
+        {
+          state.edit.type === "PROPERTIES"
+          ?(
+            <Fragment>
+                <Form.Item name="title" label="Titulo">
+                  <Input.TextArea rows={2} />
+                </Form.Item>
+                <Form.Item name="footer" label="Pie de sección">
+                  <Input.TextArea rows={4} />
+                </Form.Item>
+                <Form.Item name="buttonText" label="Texto en el botón">
+                  <Input />
+                </Form.Item>              
+            </Fragment>
+          )
+          :null
         }
         {
           state.edit.type === "ABOUT_BANNER"

@@ -10,11 +10,11 @@ const MainSection = styled.section`
 `
 
 export default ()=> {
-  const reviews = useContext(OfficeContext).webOffice.home.reviews;
+  const reviews = useContext(OfficeContext).home.reviews;
   return(
     <Container>
-      <MainSection>
-        <QuoteCardCarousel items={reviews} />
+      <MainSection className="edit-cont">
+        <QuoteCardCarousel items={reviews.items} />
       </MainSection>
     </Container>
   )

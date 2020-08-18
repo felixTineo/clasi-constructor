@@ -30,6 +30,9 @@ const CloseCont = styled.div`
   top: .25rem;
   z-index: 100;
 `
+const AddButton = styled.button`
+
+`
 
 export default ({ items, form })=>{
   const [cards, setCards] = useState(items);

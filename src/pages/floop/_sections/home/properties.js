@@ -16,7 +16,7 @@ const MainSection = styled.section`
     left: 0;
     height: 50%;
     width: 100%;
-    background-color: ${props => props.theme.primaryColor};
+    background-color: ${props => props.theme.main.primaryColor};
   }
 `
 const TitleSection = styled.h2`
@@ -25,7 +25,7 @@ const TitleSection = styled.h2`
   display: flex;
   flex-direction: column;
   align-items: center; 
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.main.secondaryColor};
   text-align: center;
 `
 const FooterSection = styled.footer`
@@ -38,27 +38,26 @@ const FooterSection = styled.footer`
 `
 
 export default ()=> {
-  const properties = useContext(OfficeContext).webOffice.home.properties.propertyList;
-  console.log(properties);
+  const properties = useContext(OfficeContext).home.properties;
   return(
     <Fragment>
     <MainSection>
       <Container>
-        <TitleSection>
-          <img src="/marker.svg" style={{ marginBottom: "1rem" }} />
-          Contamos con una seleción exclusiva de propiedades.
+        <TitleSection className="edit-cont">
+          <img src={require('assets/images/templates/floop/marker.svg')} style={{ marginBottom: "1rem" }} />
+          {properties.title}
         </TitleSection>
-        <ImageCardCarousel items={properties} />
+        <ImageCardCarousel items={properties.items} />
       </Container>
     </MainSection>
     <FooterSection>
       <Container>
         <Row align="center">
           <Col xs={12} md={9}>
-            <h3>Estas son solo algunas de las propiedades que tenemos para ofrecerte</h3>
+          <h3>{properties.footer}</h3>
           </Col>
           <Col xs={12} md={3}>
-            <Button outlined primary block>Ver todas las propiedades</Button>
+            <Button outlined primary block>{properties.buttonText}</Button>
           </Col>          
         </Row>
       </Container>
